@@ -47,6 +47,11 @@ jobs:
         with:
           name: node-app
 
+      - name: "Login via Azure CLI"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Set Web App ACR authentication
         uses: Azure/appservice-settings@v1
         with:
@@ -70,22 +75,22 @@ jobs:
               },
               {
                   "name": "FIREBASE_DATABASE_URL",
-                  "value": "${{ secrets.FIREBASE_DATABASE_URL }}",
+                  "value": "${{ vars.FIREBASE_DATABASE_URL }}",
                   "slotSetting": false
               },
               {
                   "name": "FIREBASE_MESSENGING_SENDER_ID",
-                  "value": "${{ secrets.FIREBASE_MESSENGING_SENDER_ID }}",
+                  "value": "${{ vars.FIREBASE_MESSENGING_SENDER_ID }}",
                   "slotSetting": false
               },
               {
                   "name": "FIREBASE_PROJECT_ID",
-                  "value": "${{ secrets.FIREBASE_PROJECT_ID }}",
+                  "value": "${{ vars.FIREBASE_PROJECT_ID }}",
                   "slotSetting": false
               },
               {
                   "name": "FIREBASE_STORAGE_BUCKET",
-                  "value": "${{ secrets.FIREBASE_STORAGE_BUCKET }}",
+                  "value": "${{ vars.FIREBASE_STORAGE_BUCKET }}",
                   "slotSetting": false
               }
             ]
