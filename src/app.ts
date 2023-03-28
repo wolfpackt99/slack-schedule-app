@@ -24,7 +24,7 @@ app.event("app_home_opened", async ({ event, client, logger }) => {
 
 (async () => {
   // Start your app
-  await app.start(Number(process.env.PORT) || 3000);
+  await app.start(Number(process.env.SERVER_PORT) || 3000);
 
   console.log("⚡️ Bolt app is running!");
 })();
