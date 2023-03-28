@@ -47,6 +47,15 @@ jobs:
         with:
           name: node-app
 
+      - name: "Deploy to Azure Web App"
+        uses: azure/webapps-deploy@v2
+        id: deploy-to-webapp
+        with:
+          app-name: "q-schedule-dev"
+          slot-name: "production"
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_1234 }}
+          package: .
+
       - name: "Login via Azure CLI"
         uses: azure/login@v1
         with:
@@ -95,15 +104,6 @@ jobs:
               }
             ]
 
-      - name: "Deploy to Azure Web App"
-        uses: azure/webapps-deploy@v2
-        id: deploy-to-webapp
-        with:
-          app-name: "q-schedule-dev"
-          slot-name: "production"
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_1234 }}
-          package: .
-
   deploy-production:
     name: production
     runs-on: ubuntu-latest
@@ -126,3 +126,51 @@ jobs:
           slot-name: "production"
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_Prod }}
           package: .
+
+      - name: "Login via Azure CLI"
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Set Web App ACR authentication
+        uses: Azure/appservice-settings@v1
+        with:
+          app-name: "q-schedule-dev"
+          app-settings-json: |
+            [
+              {
+                  "name": "FIREBASE_API_KEY",
+                  "value": "${{ vars.FIREBASE_API_KEY }}",
+                  "slotSetting": false
+              },
+              {
+                  "name": "FIREBASE_APP_ID",
+                  "value": "${{ vars.FIREBASE_APP_ID }}",
+                  "slotSetting": false
+              },
+              {
+                  "name": "FIREBASE_AUTH_DOMAIN",
+                  "value": "${{ vars.FIREBASE_AUTH_DOMAIN }}",
+                  "slotSetting": false
+              },
+              {
+                  "name": "FIREBASE_DATABASE_URL",
+                  "value": "${{ vars.FIREBASE_DATABASE_URL }}",
+                  "slotSetting": false
+              },
+              {
+                  "name": "FIREBASE_MESSENGING_SENDER_ID",
+                  "value": "${{ vars.FIREBASE_MESSENGING_SENDER_ID }}",
+                  "slotSetting": false
+              },
+              {
+                  "name": "FIREBASE_PROJECT_ID",
+                  "value": "${{ vars.FIREBASE_PROJECT_ID }}",
+                  "slotSetting": false
+              },
+              {
+                  "name": "FIREBASE_STORAGE_BUCKET",
+                  "value": "${{ vars.FIREBASE_STORAGE_BUCKET }}",
+                  "slotSetting": false
+              }
+            ]
