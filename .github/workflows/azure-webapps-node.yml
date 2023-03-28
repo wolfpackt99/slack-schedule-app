@@ -101,6 +101,11 @@ jobs:
                   "name": "FIREBASE_STORAGE_BUCKET",
                   "value": "${{ vars.FIREBASE_STORAGE_BUCKET }}",
                   "slotSetting": false
+              },
+              {
+                  "name": "PORT",
+                  "value": "443",
+                  "slotSetting": false
               }
             ]
 
@@ -171,6 +176,11 @@ jobs:
               {
                   "name": "FIREBASE_STORAGE_BUCKET",
                   "value": "${{ vars.FIREBASE_STORAGE_BUCKET }}",
+                  "slotSetting": false
+              },
+              {
+                  "name": "PORT",
+                  "value": "443",
                   "slotSetting": false
               }
             ]
