@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - q-schedule-dev
+name: Q Schedule App Build
 
 on:
   push:
@@ -33,7 +33,7 @@ jobs:
           name: node-app
           path: ./dist
 
-  deploy:
+  deploy-development:
     name: development
     runs-on: ubuntu-latest
     needs: build
@@ -56,12 +56,12 @@ jobs:
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_1234 }}
           package: .
 
-  deploy:
+  deploy-production:
     name: production
     runs-on: ubuntu-latest
     needs: [build, development]
     environment:
-      name: 'production'
+      name: "production"
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
@@ -70,11 +70,11 @@ jobs:
         with:
           name: node-app
 
-      - name: 'Deploy to Azure Web App'
+      - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
-          app-name: 'q-schedule-prod'
-          slot-name: 'production'
+          app-name: "q-schedule-prod"
+          slot-name: "production"
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_Prod }}
           package: .
