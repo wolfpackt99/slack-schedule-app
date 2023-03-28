@@ -135,7 +135,7 @@ jobs:
       - name: Set Web App ACR authentication
         uses: Azure/appservice-settings@v1
         with:
-          app-name: "q-schedule-dev"
+          app-name: "q-schedule-prod"
           app-settings-json: |
             [
               {
