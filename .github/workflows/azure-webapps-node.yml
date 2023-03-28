@@ -50,45 +50,45 @@ jobs:
       - name: Set Web App ACR authentication
         uses: Azure/appservice-settings@v1
         with:
-        app-name: "q-schedule-dev"
-        app-settings-json: |
-          [
-            {
-                "name": "FIREBASE_API_KEY",
-                "value": "${{ vars.FIREBASE_API_KEY }}",
-                "slotSetting": false
-            },
-            {
-                "name": "FIREBASE_APP_ID",
-                "value": "${{ vars.FIREBASE_APP_ID }}",
-                "slotSetting": false
-            },
-            {
-                "name": "FIREBASE_AUTH_DOMAIN",
-                "value": "${{ vars.FIREBASE_AUTH_DOMAIN }}",
-                "slotSetting": false
-            },
-            {
-                "name": "FIREBASE_DATABASE_URL",
-                "value": "${{ secrets.FIREBASE_DATABASE_URL }}",
-                "slotSetting": false
-            },
-            {
-                "name": "FIREBASE_MESSENGING_SENDER_ID",
-                "value": "${{ secrets.FIREBASE_MESSENGING_SENDER_ID }}",
-                "slotSetting": false
-            },
-            {
-                "name": "FIREBASE_PROJECT_ID",
-                "value": "${{ secrets.FIREBASE_PROJECT_ID }}",
-                "slotSetting": false
-            },
-            {
-                "name": "FIREBASE_STORAGE_BUCKET",
-                "value": "${{ secrets.FIREBASE_STORAGE_BUCKET }}",
-                "slotSetting": false
-            }
-          ]
+          app-name: "q-schedule-dev"
+          app-settings-json: |
+            [
+              {
+                  "name": "FIREBASE_API_KEY",
+                  "value": "${{ vars.FIREBASE_API_KEY }}",
+                  "slotSetting": false
+              },
+              {
+                  "name": "FIREBASE_APP_ID",
+                  "value": "${{ vars.FIREBASE_APP_ID }}",
+                  "slotSetting": false
+              },
+              {
+                  "name": "FIREBASE_AUTH_DOMAIN",
+                  "value": "${{ vars.FIREBASE_AUTH_DOMAIN }}",
+                  "slotSetting": false
+              },
+              {
+                  "name": "FIREBASE_DATABASE_URL",
+                  "value": "${{ secrets.FIREBASE_DATABASE_URL }}",
+                  "slotSetting": false
+              },
+              {
+                  "name": "FIREBASE_MESSENGING_SENDER_ID",
+                  "value": "${{ secrets.FIREBASE_MESSENGING_SENDER_ID }}",
+                  "slotSetting": false
+              },
+              {
+                  "name": "FIREBASE_PROJECT_ID",
+                  "value": "${{ secrets.FIREBASE_PROJECT_ID }}",
+                  "slotSetting": false
+              },
+              {
+                  "name": "FIREBASE_STORAGE_BUCKET",
+                  "value": "${{ secrets.FIREBASE_STORAGE_BUCKET }}",
+                  "slotSetting": false
+              }
+            ]
 
       - name: "Deploy to Azure Web App"
         uses: azure/webapps-deploy@v2
