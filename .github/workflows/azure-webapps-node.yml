@@ -47,7 +47,7 @@ jobs:
         with:
           name: node-app
 
-      - name: "Deploy to Azure Web App"
+      - name: "Deploy to Azure Web Dev"
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
@@ -61,7 +61,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Set Web App ACR authentication
+      - name: Set Configs for dev
         uses: Azure/appservice-settings@v1
         with:
           app-name: "q-schedule-dev"
@@ -118,7 +118,7 @@ jobs:
         with:
           name: node-app
 
-      - name: "Deploy to Azure Web App"
+      - name: "Deploy to Azure Web Prod"
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
@@ -132,7 +132,7 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Set Web App ACR authentication
+      - name: Set Configs for prod
         uses: Azure/appservice-settings@v1
         with:
           app-name: "q-schedule-prod"
