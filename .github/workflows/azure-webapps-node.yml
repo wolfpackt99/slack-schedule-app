@@ -69,6 +69,16 @@ jobs:
           app-settings-json: |
             [
               {
+                "name":"SLACK_BOT_TOKEN",
+                "value":"${{secrets.SLACK_BOT_TOKEN}}",
+                "slotSetting":"false"
+              },
+              {
+                "name":"SLACK_SIGNING_SECRET",
+                "value":"${{secrets.SLACK_SIGNING_SECRET}}",
+                "slotSetting":"false"
+              },
+              {
                   "name": "FIREBASE_API_KEY",
                   "value": "${{ vars.FIREBASE_API_KEY }}",
                   "slotSetting": false
@@ -139,6 +149,16 @@ jobs:
           app-name: "q-schedule-prod"
           app-settings-json: |
             [
+              {
+                "name":"SLACK_BOT_TOKEN",
+                "value":"${{secrets.SLACK_BOT_TOKEN}}",
+                "slotSetting":"false"
+              },
+              {
+                "name":"SLACK_SIGNING_SECRET",
+                "value":"${{secrets.SLACK_SIGNING_SECRET}}",
+                "slotSetting":"false"
+              },
               {
                   "name": "FIREBASE_API_KEY",
                   "value": "${{ vars.FIREBASE_API_KEY }}",
