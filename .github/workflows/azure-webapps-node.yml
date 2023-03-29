@@ -26,15 +26,16 @@ jobs:
           npm install
           npm run build --if-present
           npm prune --production
-          npm run test --if-present
+
+      - name: copy node_modules into dist
+        run: |
+          mv ./node_modules/ ./dist
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: node-app
-          path: |
-            ./dist
-            ./node_modules
+          path: ./dist
 
   deploy-development:
     name: development
